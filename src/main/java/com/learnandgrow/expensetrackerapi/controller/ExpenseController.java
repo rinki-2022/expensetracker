@@ -3,6 +3,9 @@ package com.learnandgrow.expensetrackerapi.controller;
 import com.learnandgrow.expensetrackerapi.entity.Expense;
 import com.learnandgrow.expensetrackerapi.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +17,8 @@ public class ExpenseController {
     private ExpenseService expenseService;
 
     @GetMapping("/expenses")
-    public List<Expense> getExpenses() {
-        return expenseService.getAllExpenses();
+    public List<Expense> getExpenses(Pageable pageable) {
+        return expenseService.getAllExpenses(pageable).toList();
     }
 
     @GetMapping("/expenses/{id}")
@@ -23,11 +26,13 @@ public class ExpenseController {
         return expenseService.getExpenseById(id);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/expenses")
     public void deleteExpenseById(@RequestParam("id") Long id) {
         expenseService.deleteExpenseById(id);
     }
 
+    @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/expenses")
     public Expense saveExpenseDetails(@RequestBody Expense expense){
         return expenseService.saveExpenseDetails(expense);
