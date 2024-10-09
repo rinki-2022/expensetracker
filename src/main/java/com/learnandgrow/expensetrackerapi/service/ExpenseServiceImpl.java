@@ -51,4 +51,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 
         return expenseRepository.save(existingExpenseDetails);
     }
+
+    @Override
+    public List<Expense> readByCategory(String category) {
+        return expenseRepository.findByCategory(category);
+    }
 }
