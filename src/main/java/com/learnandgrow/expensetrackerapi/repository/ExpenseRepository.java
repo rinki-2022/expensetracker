@@ -12,4 +12,5 @@ import java.util.List;
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     List<Expense> findByCategory(String category);
+    Page<Expense> findByNameContaining(String keyword, Pageable pageable);
 }
