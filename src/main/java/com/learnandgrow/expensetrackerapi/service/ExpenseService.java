@@ -4,6 +4,7 @@ import com.learnandgrow.expensetrackerapi.entity.Expense;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ExpenseService {
@@ -21,4 +22,6 @@ public interface ExpenseService {
     List<Expense> readByCategory(String category);
 
     List<Expense> readByName(String keyword, Pageable pageable);
+
+    List<Expense> readByDate(Date startDate, Date endDate, Pageable pageable);
 }
