@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 
@@ -30,6 +31,6 @@ public class User {
     private Timestamp createdAt;
 
     @Column(name = "updated_at")
-    @CreationTimestamp
+    @UpdateTimestamp
     private Timestamp updatedAt;
 }
