@@ -1,5 +1,8 @@
 package com.learnandgrow.expensetrackerapi.entity;
 
+import lombok.Data;
+
+@Data
 public class UserModel {
 
     private String name;
