@@ -7,6 +7,7 @@ import com.learnandgrow.expensetrackerapi.exceptions.ResourceNotFoundException;
 import com.learnandgrow.expensetrackerapi.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.lang.module.ResolutionException;
@@ -14,6 +15,8 @@ import java.lang.module.ResolutionException;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private UserRepository userRepository;
 
@@ -24,6 +27,7 @@ public class UserServiceImpl implements UserService {
         }
         User newUser = new User();
         BeanUtils.copyProperties(user, newUser);
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(newUser);
     }
 
@@ -37,7 +41,7 @@ public class UserServiceImpl implements UserService {
         User existingUser = readUser(id);
         existingUser.setName(user.getName() != null ? user.getName() : existingUser.getName());
         existingUser.setEmail(user.getEmail() != null ? user.getEmail() : existingUser.getEmail());
-        existingUser.setPassword(user.getPassword() != null ? user.getPassword() : existingUser.getPassword());
+        existingUser.setPassword(user.getPassword() != null ? passwordEncoder.encode(user.getPassword()) : existingUser.getPassword());
         existingUser.setAge(user.getAge() != null ? user.getAge() : existingUser.getAge());
         return userRepository.save(existingUser);
     }
