@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
@@ -16,5 +17,6 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     Page<Expense> findByNameContaining(String keyword, Pageable pageable);
     Page<Expense> findByDateBetween(Date startDate, Date endDate,Pageable pageable);
     Page<Expense> findByUserId(Long userId,Pageable pageable);
+    Optional<Expense> findByUserIdAndId(Long userId, Long expenseId);
 
 }

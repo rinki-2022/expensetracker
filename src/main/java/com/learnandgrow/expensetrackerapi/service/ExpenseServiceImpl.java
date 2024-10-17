@@ -27,7 +27,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Override
     public Expense getExpenseById(Long id) {
-        Optional<Expense> expense = expenseRepository.findById(id);
+        Optional<Expense> expense = expenseRepository.findByUserIdAndId(userService.getLoggedInUser().getId(), id);
         if (expense.isPresent()) {
             return expense.get();
         }
