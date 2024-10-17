@@ -6,8 +6,8 @@ import com.learnandgrow.expensetrackerapi.entity.UserModel;
 public interface UserService {
 
     User createUser(UserModel user);
-    User readUser(Long id);
-    User updateUser(UserModel user, Long id);
-    void deleteUser(Long id);
+    User readUser();
+    User updateUser(UserModel user);
+    void deleteUser();
     User getLoggedInUser();
 }

@@ -36,7 +36,6 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Override
     public void deleteExpenseById(Long id) {
-
         Expense expense = getExpenseById(id);
         expenseRepository.delete(expense);
     }
