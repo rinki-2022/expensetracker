@@ -15,4 +15,6 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     List<Expense> findByCategory(String category);
     Page<Expense> findByNameContaining(String keyword, Pageable pageable);
     Page<Expense> findByDateBetween(Date startDate, Date endDate,Pageable pageable);
+    Page<Expense> findByUserId(Long userId,Pageable pageable);
+
 }
