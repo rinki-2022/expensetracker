@@ -50,10 +50,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = { Exception.class })
-    public ResponseEntity<ErrorObject> handleGeneralException(MethodArgumentTypeMismatchException methodArgumentTypeMismatchException, WebRequest request) {
+    public ResponseEntity<ErrorObject> handleGeneralException(Exception exception, WebRequest request) {
         ErrorObject errorObject = new ErrorObject();
         errorObject.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        errorObject.setMessage("Something went wrong");
+        errorObject.setMessage(exception.getMessage());
         errorObject.setTimestamp(new Date());
         return new ResponseEntity<>(errorObject, HttpStatus.INTERNAL_SERVER_ERROR);
     }
