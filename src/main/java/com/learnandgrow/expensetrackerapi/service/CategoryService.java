@@ -9,4 +9,5 @@ public interface CategoryService {
 
     List<CategoryDTO> getAllCatgeories();
     CategoryDTO saveCategory(CategoryDTO categoryDTO);
+    void deleteCategory(String categoryId);
 }
